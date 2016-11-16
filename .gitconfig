@@ -1,0 +1,19 @@
+[user]
+	name = Phil Hord
+	email = phord@purestorage.com
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lga = log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[branch]
+	autosetuprebase = always
+[reviewboard]
+	url = https://codereviews.purestorage.com
+[core]
+	editor = vim
+[color]
+	ui = auto
+[log]
+	date = local
+	decorate = short
+[push]
+	default = simple
