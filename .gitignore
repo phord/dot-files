@@ -1,0 +1,6 @@
+# WARNING:  Do not check anything with a password or hash in here. This gets
+# saved to github and is public.
+
+id_rsa
+id_dsa
+

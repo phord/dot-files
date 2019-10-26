@@ -2,8 +2,21 @@
 	name = Phil Hord
 	email = phord@purestorage.com
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	lga = log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	# pretty one-line logs
+	lg = log --color --graph --pretty=color --abbrev-commit
+	lga = log --all --color --graph --pretty=color --abbrev-commit
+	lgu = log --color --graph --pretty=color --abbrev-commit HEAD --not @{u}^@
+	lgg = log --graph --pretty=color
+	lgr = log --color --graph --pretty=color --abbrev-commit -20 --since=3w
+	lgru = log --color --graph --pretty=color --abbrev-commit -20 --since=4w --author=phord
+
+	# Pretty branch info with most recently touched branches listed last
+	bl = branch --list --sort=committerdate --format='%(HEAD) %(color:yellow)%(align:60)%(refname:short)%(end)%(color:reset)  %(color:red)%(objectname:short)%(color:reset)  %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+	blx = branch --list --sort=committerdate --format='%(HEAD) %(color:yellow)%(align:60)%(refname:short)%(end)%(color:reset)  %(color:red)%(objectname:short)%(color:reset)  %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+	# fast-squash: "commit, add, amend last commit, no-edit"
+	can = commit -a --amend --no-edit
+
 [branch]
 	autosetuprebase = always
 [reviewboard]
@@ -16,4 +29,37 @@
 	date = local
 	decorate = short
 [push]
-	default = simple
+	default = upstream
+[rebase]
+	autoStash = true
+	instructionFormat = - %s <%an>
+[rerere]
+	enabled = true
+[color "diff"]
+	whitespace = red reverse
+[mergetool]
+	keepBackup = false
+[diff]
+	tool = bc3
+	wsErrorHighlight = all
+	noprefix = true
+[merge]
+	tool = bc3
+#	conflictstyle = diff3
+[pretty]
+	color = tformat:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+[sequence]
+#	editor = rebase-editor
+[gc]
+	auto = 15000
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = phil.hord@gmail.com
+	from = Phil Hord
+	smtpServerPort = 587
+	smtpPass=ugcufgdhwczfbkdi
+[trailer "jira"]
+	key = "Jira"
+[trailer "review"]
+	#key = Reviewed at
